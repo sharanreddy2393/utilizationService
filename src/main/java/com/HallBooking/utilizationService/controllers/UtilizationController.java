@@ -33,4 +33,14 @@ public class UtilizationController {
 	public Optional<HallInformation> GetHallInformationById(@PathVariable int hallid ) {	
 		 return service.GetHallInformationById(hallid);		
 	}
+	
+	@RequestMapping(value="/getuserbyemail/{emailid}/{phonenum}" , method=RequestMethod.GET)
+	public Optional<UserInfromation> GetUserByEmailId(@PathVariable String emailid, @PathVariable String phonenum) {
+		return service.GetUserInformationByEmail(emailid,phonenum);
+	}
+	
+	@RequestMapping(value="/getHallInfo/{muncipalnum}")
+	public Optional<HallInformation> GetHallInfoByMuncipal(@PathVariable String muncipalnum) {
+		return service.GetHallInfoByMuncipal(muncipalnum);
+	}
 }

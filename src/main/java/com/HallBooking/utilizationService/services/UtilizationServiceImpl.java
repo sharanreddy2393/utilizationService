@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.HallBooking.common.Entity.HallInformation;
 import com.HallBooking.common.Entity.UserInfromation;
+import com.HallBooking.utilizationService.dao.UtilizationServiceDao;
 import com.HallBooking.utilizationService.dao.UtilizationServiceDaoImpl;
 import com.HallBooking.utilizationService.dao.UtilizationServiceDaoImpl;
 
@@ -18,7 +19,7 @@ import com.HallBooking.utilizationService.dao.UtilizationServiceDaoImpl;
 public class UtilizationServiceImpl implements UtilizationService{
 
 	@Autowired
-	UtilizationServiceDaoImpl utilizationDao;
+	UtilizationServiceDao utilizationDao;
 	
 	@Override
 	public List<UserInfromation> GetAllUserInformation() {
@@ -33,6 +34,16 @@ public class UtilizationServiceImpl implements UtilizationService{
 	@Override
 	public Optional<HallInformation> GetHallInformationById(int hallId) {
 		return utilizationDao.GetHallInformationById(hallId);
+	}
+
+	@Override
+	public Optional<UserInfromation> GetUserInformationByEmail(String email, String phoneNum) {
+		return utilizationDao.GetUserInformationByEmail(email,phoneNum);
+	}
+
+	@Override
+	public Optional<HallInformation> GetHallInfoByMuncipal(String muncipalNum) {
+		return utilizationDao.GetHallInfoByMuncipal(muncipalNum);
 	}
 	
 	

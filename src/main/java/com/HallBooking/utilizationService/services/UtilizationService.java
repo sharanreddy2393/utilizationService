@@ -13,4 +13,6 @@ public interface UtilizationService {
 	public List<UserInfromation> GetAllUserInformation();
 	public Optional<UserInfromation> GetUserInformationById(int uid);
 	public Optional<HallInformation> GetHallInformationById(int hallId);
+	public Optional<UserInfromation> GetUserInformationByEmail(String email, String phoneNum);
+	public Optional<HallInformation> GetHallInfoByMuncipal(String muncipalNum);
 }

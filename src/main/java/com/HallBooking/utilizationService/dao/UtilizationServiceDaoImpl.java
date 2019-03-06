@@ -14,6 +14,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -29,19 +30,22 @@ import com.HallBooking.utilizationService.repository.UtilizationServiceUserRepos
 @Transactional
 public class UtilizationServiceDaoImpl implements UtilizationServiceDao{
 
+	
+	
 	@Autowired
-	 UtilizationServiceUserRepository utilizationServiceRepository;
+	 UtilizationServiceUserRepository utilizationServiceUserRepository;
 	
 	@Autowired
 	UtilizationServiceHallRepository utilizationServiceHallRepository;
 
 	
-	public Optional<UserInfromation> GetUserInformationById(Integer id) {
-		return utilizationServiceRepository.findById(id);
-	}
-	
+	public Optional<UserInfromation> GetUserInformationById(int uid) {
+		return utilizationServiceUserRepository.findById(uid);
+	}	
+
 	public List<UserInfromation> GetAllUserInfor(){
-		return utilizationServiceRepository.findAll();
+		
+		return utilizationServiceUserRepository.findAll();
 	}
 
 	@Override
@@ -49,5 +53,18 @@ public class UtilizationServiceDaoImpl implements UtilizationServiceDao{
 		
 		return utilizationServiceHallRepository.findById(hallId);
 	}
+
+	@Override
+	public Optional<UserInfromation> GetUserInformationByEmail(String email, String phoneNum) {
+		return utilizationServiceUserRepository.GetUserInformationByEmail(email,phoneNum);
+	}
+
+	@Override
+	public Optional<HallInformation> GetHallInfoByMuncipal(String muncipalNum) {
+		// TODO Auto-generated method stub
+		return utilizationServiceHallRepository.GetHallInformationByMuncipal(muncipalNum);
+	}
+
+	
 	
 }
