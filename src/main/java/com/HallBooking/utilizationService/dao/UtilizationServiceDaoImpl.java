@@ -22,8 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.HallBooking.common.Entity.HallInformation;
+import com.HallBooking.common.Entity.OwnerInformation;
 import com.HallBooking.common.Entity.UserInfromation;
 import com.HallBooking.utilizationService.repository.UtilizationServiceHallRepository;
+import com.HallBooking.utilizationService.repository.UtilizationServiceOwnerRepository;
 import com.HallBooking.utilizationService.repository.UtilizationServiceUserRepository;
 
 @Repository
@@ -37,6 +39,9 @@ public class UtilizationServiceDaoImpl implements UtilizationServiceDao{
 	
 	@Autowired
 	UtilizationServiceHallRepository utilizationServiceHallRepository;
+	
+	@Autowired
+	UtilizationServiceOwnerRepository utilizationServiceOwnerRepository;
 
 	
 	public Optional<UserInfromation> GetUserInformationById(int uid) {
@@ -61,8 +66,12 @@ public class UtilizationServiceDaoImpl implements UtilizationServiceDao{
 
 	@Override
 	public Optional<HallInformation> GetHallInfoByMuncipal(String muncipalNum) {
-		// TODO Auto-generated method stub
 		return utilizationServiceHallRepository.GetHallInformationByMuncipal(muncipalNum);
+	}
+
+	@Override
+	public Optional<OwnerInformation> GetOwnerInformation(String adhar, String email, String phonenumber) {
+		return utilizationServiceOwnerRepository.GetOwnerInformation(email, phonenumber, adhar);
 	}
 
 	

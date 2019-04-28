@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.HallBooking.common.Entity.HallInformation;
+import com.HallBooking.common.Entity.OwnerInformation;
 import com.HallBooking.common.Entity.UserInfromation;
 import com.HallBooking.utilizationService.dao.UtilizationServiceDao;
 import com.HallBooking.utilizationService.dao.UtilizationServiceDaoImpl;
@@ -44,6 +45,11 @@ public class UtilizationServiceImpl implements UtilizationService{
 	@Override
 	public Optional<HallInformation> GetHallInfoByMuncipal(String muncipalNum) {
 		return utilizationDao.GetHallInfoByMuncipal(muncipalNum);
+	}
+
+	@Override
+	public Optional<OwnerInformation> GetOwnerInformation(String adhar, String email, String phonenumber) {
+		return utilizationDao.GetOwnerInformation(adhar, email, phonenumber);
 	}
 	
 	
